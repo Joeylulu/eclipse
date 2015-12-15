@@ -17,15 +17,13 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/i
 RUN apt-get update && apt-get install -y --no-install-recommends xterm supervisor
 RUN apt-get install -y --no-install-recommends x11vnc xvfb
 
-RUN apt-get update \
- && apt-get install -y software-properties-common curl \
+RUN apt-get install -y software-properties-common curl \
  && apt-add-repository -y ppa:webupd8team/java \
- && apt-get update \
  && echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections \
  && echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 RUN apt-get install -y oracle-java8-set-default
 
-RUN apt-get update && apt-get install -y --no-install-recommends lxde
+RUN apt-get install -y --no-install-recommends lxde
 
 ENV ECLIPSE eclipse-jee-luna-SR2-linux-gtk-x86_64.tar.gz
 RUN curl -O http://ftp.yzu.edu.tw/eclipse/technology/epp/downloads/release/luna/SR2/"$ECLIPSE"
